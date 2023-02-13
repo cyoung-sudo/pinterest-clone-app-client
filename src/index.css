@@ -3,6 +3,8 @@
 :root {
   /* Colors */
   --theme-color: orangered;
+  /* Font Sizes */
+  --default-font: 16px;
   /* Measurements */
   --navbar-height: 60px;
 }

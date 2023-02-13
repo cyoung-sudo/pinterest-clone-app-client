@@ -35,6 +35,22 @@
   text-decoration: none;
 }
 
+#navbar-links li button {
+  margin-left: 1rem;
+  padding: 0.3rem 0.5rem;
+  background-color: var(--theme-color);
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  font-size: var(--default-font);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#navbar-links li button:hover {
+  cursor: pointer;
+}
+
 .navbar-link-active {
   opacity: 50%;
 }
