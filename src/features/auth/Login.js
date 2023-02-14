@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 // Redux
 import { useDispatch } from "react-redux";
 import { setUser } from "../../appSlice";
+import { setPopup } from "../../components/popup/slices/popupSlice";
 // Components
 import AuthForm from "../../components/forms/AuthForm";
 // APIs
@@ -25,20 +26,28 @@ export default function Login() {
 
     // Validations
     if(username === "" || password === "") {
-      console.log("Fill out all input fields");
+      dispatch(setPopup({
+        message: "Missing input field",
+        type: "error"
+      }));
     } else {
       // Login user
       authAPI.login(username, password)
       .then(res => {
         if(res.data.success) {
-          console.log("Logged in");
-
           dispatch(setUser(res.data.user));
+          dispatch(setPopup({
+            message: "Successfully logged-in",
+            type: "success"
+          }));
 
           // Redirect to profile page
           navigate(`/users/${res.data.user._id}`);
         } else {
-          console.log(res.data.message);
+          dispatch(setPopup({
+            message: res.data.message,
+            type: "error"
+          }));
         }
       })
       .catch(err => console.log(err));

@@ -4,6 +4,8 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../../appSlice";
+import { setPopup } from "../popup/slices/popupSlice";
+
 // APIs
 import * as authAPI from "../../apis/authAPI";
 
@@ -19,9 +21,11 @@ export default function Navbar() {
     authAPI.logout()
     .then(res => {
       if(res.data.success) {
-        console.log("Logged out");
-
         dispatch(setUser(null));
+        dispatch(setPopup({
+          message: "Successfully logged-out",
+          type: "success"
+        }));
 
         // Redirect to home page
         navigate("/");

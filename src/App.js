@@ -11,6 +11,7 @@ import * as authAPI from "./apis/authAPI";
 // Components
 import Navbar from "./components/navigation/Navbar";
 import Footer from "./components/navigation/Footer";
+import Popup from "./components/popup/Popup";
 import Loading from "./components/static/Loading";
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
       <div id="app">
         <Navbar/>
         <div id="app-content">
+          <Popup/>
           <Outlet/>
         </div>
         <Footer/>

@@ -3,6 +3,9 @@ import "./Signup.css";
 import { useState } from "react";
 // Routing
 import { useNavigate } from "react-router-dom";
+// Redux
+import { useDispatch } from "react-redux";
+import { setPopup } from "../../components/popup/slices/popupSlice";
 // Components
 import AuthForm from "../../components/forms/AuthForm";
 // APIs
@@ -13,6 +16,7 @@ export default function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   // Hooks
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   //----- Signup user
@@ -21,18 +25,27 @@ export default function Signup() {
 
     // Validations
     if(username === "" || password === "") {
-      console.log("Fill out all input fields");
+      dispatch(setPopup({
+        message: "Missing input field",
+        type: "error"
+      }));
     } else {
       // Create user
       userAPI.create(username, password)
       .then(res => {
         if(res.data.success) {
-          console.log("Signed up");
+          dispatch(setPopup({
+            message: "Successfully signed-up",
+            type: "success"
+          }));
 
           // Redirect to login page
           navigate("/login");
         } else {
-          console.log(res.data.message);
+          dispatch(setPopup({
+            message: res.data.message,
+            type: "error"
+          }));
         }
       })
       .catch(err => console.log(err));
