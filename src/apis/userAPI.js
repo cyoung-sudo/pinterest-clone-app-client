@@ -1,5 +1,15 @@
 import api from "./configs/axiosConfig";
 
+//----- Retrieve all users
+export const getAll = async () => {
+  const res = await api.request({
+    method: "GET",
+    url: "/users"
+  });
+
+  return res;
+};
+
 //----- Create user
 export const create = async (username, password) => {
   const res = await api.request({

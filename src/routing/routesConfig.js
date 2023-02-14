@@ -4,6 +4,7 @@ import App from "../App";
 import Login from "../features/auth/Login";
 import Signup from "../features/auth/Signup";
 import Profile from "../features/users/Profile";
+import Users from "../features/users/Users";
 // Components
 import HomePage from "../components/static/HomePage";
 import NotFound from "../components/errors/NotFound";
@@ -27,8 +28,17 @@ const routesConfig = [
         element: <Signup/>
       },
       {
-        path: "/users/:id",
-        element: <Profile/>
+        path: "users",
+        children:[
+          {
+            index: true,
+            element: <Users/>
+          },
+          {
+            path: ":id",
+            element: <Profile/>
+          }
+        ]
       }
     ]
   }
