@@ -3,14 +3,24 @@ import "./Profile.css";
 import { useState, useEffect } from "react";
 // Routing
 import { useParams } from "react-router-dom";
+// Redux
+import { useDispatch } from "react-redux";
+import { setPopup } from "../../components/popup/slices/popupSlice";
+// Components
+import ImageForm from "../../components/forms/ImageForm";
 // APIs
+import * as authAPI from "../../apis/authAPI";
 import * as userAPI from "../../apis/userAPI";
+import * as imageAPI from "../../apis/imageAPI";
 
 export default function Profile() {
   // Requested data
   const [user, setUser] = useState(null);
+  // Controlled inputs
+  const [url, setUrl] = useState("");
   // Hooks
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   //----- Retrieve given user on load
   useEffect(() => {
@@ -23,11 +33,59 @@ export default function Profile() {
     .catch(err => console.log(err));
   }, []);
 
+  //----- Add new image
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    // Validations
+    if(url === "") {
+      dispatch(setPopup({
+        message: "Missing url",
+        type: "error"
+      }));
+    } else {
+      // Check session status
+      authAPI.getUser()
+      .then(res => {
+        if(res.data.success) {
+          return imageAPI.create(res.data.user._id, url);
+        } else {
+          return { message: "Session has expired"};
+        }
+      })
+      .then(res => {
+        if(res.message) {
+          dispatch(setPopup({
+            message: res.message,
+            type: "error"
+          }));
+        } else if(res.data.success) {
+          dispatch(setPopup({
+            message: "Image created",
+            type: "success"
+          }));
+        } else {
+          dispatch(setPopup({
+            message: res.data.message,
+            type: "error"
+          }));
+        }
+      })
+      .catch(err => console.log(err));
+    }
+  };
+
   if(user) {
     return (
       <div id="profile">
         <div id="profile-header">
           <h1>{ user.username }'s Profile</h1>
+        </div>
+
+        <div id="profile-form-wrapper">
+          <ImageForm
+            setUrl={ setUrl }
+            handleSubmit={ handleSubmit }/>
         </div>
       </div>
     );
