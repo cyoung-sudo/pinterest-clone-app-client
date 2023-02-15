@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 // Routing
 import { useParams } from "react-router-dom";
 // Redux
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { refresh } from "../../appSlice";
 import { setPopup } from "../../components/popup/slices/popupSlice";
 // Components
 import ImageForm from "../../components/forms/ImageForm";
@@ -22,6 +23,8 @@ export default function Profile() {
   const [images, setImages] = useState(null);
   // Controlled inputs
   const [url, setUrl] = useState("");
+  // State
+  const { refreshToggle }  = useSelector((state) => state.app);
   // Hooks
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -39,6 +42,9 @@ export default function Profile() {
 
   //----- Retrieve images for given user on load
   useEffect(() => {
+    // Reset state (loading data)
+    setImages(null);
+
     imageAPI.getForUser(id)
     .then(res => {
       if(res.data.success) {
@@ -48,7 +54,7 @@ export default function Profile() {
       }
     })
     .catch(err => console.log(err));
-  }, []);
+  }, [refreshToggle]);
 
   //----- Add new image
   const handleSubmit = e => {
@@ -81,6 +87,7 @@ export default function Profile() {
             message: "Image created",
             type: "success"
           }));
+          dispatch(refresh());
         } else {
           dispatch(setPopup({
             message: res.data.message,
