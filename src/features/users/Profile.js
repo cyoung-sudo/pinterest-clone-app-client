@@ -8,14 +8,18 @@ import { useDispatch } from "react-redux";
 import { setPopup } from "../../components/popup/slices/popupSlice";
 // Components
 import ImageForm from "../../components/forms/ImageForm";
+import ImagesDislay from "../../components/displays/ImagesDisplay";
 // APIs
 import * as authAPI from "../../apis/authAPI";
 import * as userAPI from "../../apis/userAPI";
 import * as imageAPI from "../../apis/imageAPI";
+// Utils
+import * as formatData from "../../utils/formatData";
 
 export default function Profile() {
   // Requested data
   const [user, setUser] = useState(null);
+  const [images, setImages] = useState(null);
   // Controlled inputs
   const [url, setUrl] = useState("");
   // Hooks
@@ -28,6 +32,19 @@ export default function Profile() {
     .then(res => {
       if(res.data.success) {
         setUser(res.data.user);
+      }
+    })
+    .catch(err => console.log(err));
+  }, []);
+
+  //----- Retrieve images for given user on load
+  useEffect(() => {
+    imageAPI.getForUser(id)
+    .then(res => {
+      if(res.data.success) {
+        // Format images
+        let formattedImages = formatData.formatImages(res.data.images);
+        setImages(formattedImages);
       }
     })
     .catch(err => console.log(err));
@@ -75,7 +92,7 @@ export default function Profile() {
     }
   };
 
-  if(user) {
+  if(user && images) {
     return (
       <div id="profile">
         <div id="profile-header">
@@ -86,6 +103,11 @@ export default function Profile() {
           <ImageForm
             setUrl={ setUrl }
             handleSubmit={ handleSubmit }/>
+        </div>
+
+        <div id="profile-imagesDisplay-wrapper">
+          <ImagesDislay
+            images={ images }/>
         </div>
       </div>
     );

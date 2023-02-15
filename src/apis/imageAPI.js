@@ -13,3 +13,13 @@ export const create = async (ownerId, url) => {
 
   return res;
 };
+
+//----- Retrieve all images for given user
+export const getForUser = async userId => {
+  const res = await api.request({
+    method: "GET",
+    url: `/images/user/${userId}`
+  });
+
+  return res;
+};
