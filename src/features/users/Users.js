@@ -5,23 +5,49 @@ import { useState, useEffect } from "react";
 import UsersDisplay from "../../components/displays/UsersDisplay";
 // APIs
 import * as userAPI from "../../apis/userAPI";
+import * as imageAPI from "../../apis/imageAPI";
 
 export default function Users() {
   // Requested data
   const [users, setUsers] = useState(null);
+  const [imageCount, setImageCount] = useState(null);
 
-  //----- Retrieve all users on load
+  //----- Retrieve all users & image-count on load
   useEffect(() => {
+    // Retrieve all users
     userAPI.getAll()
     .then(res => {
       if(res.data.success) {
         setUsers(res.data.users);
       }
+
+      return { users: res.data.users };
+    })
+    .then(res => {
+      let promises = [];
+
+      // Retrieve images for each user
+      res.users.forEach(user => {
+        promises.push(imageAPI.getForUser(user._id));
+      });
+
+      return Promise.all(promises);
+    })
+    .then(res => {
+      // Save image-count
+      res.forEach((response, idx) => {
+        let count = response.data.images.length;
+        if(idx === 0) {
+          setImageCount([count]);
+        } else {
+          setImageCount(state => [...state, count]);
+        }
+      });
     })
     .catch(err => console.log(err));
   }, []);
 
-  if(users) {
+  if(users && imageCount) {
     return (
       <div id="users">
         <div id="users-header">
@@ -30,7 +56,8 @@ export default function Users() {
   
         <div id="users-list-wrapper">
           <UsersDisplay
-            users={ users }/>
+            users={ users }
+            imageCount={ imageCount }/>
         </div>
       </div>
     );
