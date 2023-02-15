@@ -23,3 +23,13 @@ export const getForUser = async userId => {
 
   return res;
 };
+
+//----- Delete all images for given user
+export const deleteForUser = async userId => {
+  const res = await api.request({
+    method: "DELETE",
+    url: `/images/user/${userId}`
+  });
+
+  return res;
+};

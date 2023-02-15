@@ -87,6 +87,18 @@ export default function Navbar() {
 
         {authUser &&
           <li>
+            <NavLink
+              end
+              to="settings"
+              className={({ isActive }) =>
+                isActive ? "navbar-link-active" : undefined}>
+              Settings
+            </NavLink>
+          </li>
+        }
+
+        {authUser &&
+          <li>
             <button onClick={handleLogout}>Logout</button>
           </li>
         }
