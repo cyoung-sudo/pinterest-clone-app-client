@@ -14,12 +14,12 @@ export default function ImagesDisplay({ images, handleDelete }) {
         {images.map((image, idx) => (
           <div key={ idx } className="imagesDisplay-image">
             <img
-              src={ image.src }
+              src={ image.url }
               alt="img"
               height={ image.height }
               width={ image.width }/>
             {authUser && 
-              <button onClick={ handleDelete }>Delete</button>}
+              <button onClick={() => handleDelete(image.imageId)}>Delete</button>}
           </div>
         ))}
       </Masonry>

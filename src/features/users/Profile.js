@@ -15,7 +15,7 @@ import * as authAPI from "../../apis/authAPI";
 import * as userAPI from "../../apis/userAPI";
 import * as imageAPI from "../../apis/imageAPI";
 // Utils
-import * as formatData from "../../utils/formatData";
+import * as imageUtils from "../../utils/imageUtils";
 
 export default function Profile() {
   // Requested data
@@ -46,10 +46,14 @@ export default function Profile() {
     setImages(null);
 
     imageAPI.getForUser(id)
-    .then(res => {
+    .then(async res => {
       if(res.data.success) {
         // Format images
-        let formattedImages = formatData.formatImages(res.data.images);
+        let formattedImages = [];
+        for(let image of res.data.images) {
+          formattedImages.push(await imageUtils.formatImage(image));
+        }
+        
         setImages(formattedImages);
       }
     })
@@ -101,7 +105,17 @@ export default function Profile() {
 
   //----- Delete given image
   const handleDelete = imageId => {
-    console.log("delete");
+    imageAPI.deleteImage(imageId)
+    .then(res => {
+      if(res.data.success) {
+        dispatch(setPopup({
+          message: "Image removed",
+          type: "success"
+        }));
+        dispatch(refresh());
+      }
+    })
+    .catch(err => console.log(err));
   };
 
   if(user && images) {
@@ -119,7 +133,8 @@ export default function Profile() {
 
         <div id="profile-imagesDisplay-wrapper">
           <ImagesDislay
-            images={ images }/>
+            images={ images }
+            handleDelete={ handleDelete }/>
         </div>
       </div>
     );

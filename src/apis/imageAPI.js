@@ -14,6 +14,16 @@ export const create = async (ownerId, url) => {
   return res;
 };
 
+//----- Delete given image
+export const deleteImage = async id => {
+  const res = await api.request({
+    method: "DELETE",
+    url: `/image/${id}`
+  });
+
+  return res;
+};
+
 //----- Retrieve all images for given user
 export const getForUser = async userId => {
   const res = await api.request({
