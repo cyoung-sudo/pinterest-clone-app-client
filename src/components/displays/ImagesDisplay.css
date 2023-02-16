@@ -1,0 +1,15 @@
+#imagesDisplay {
+  width: 100%;
+}
+
+.imagesDisplay-image {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.imagesDisplay-image img {
+  height: 100%;
+  width: 100%;
+}

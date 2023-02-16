@@ -99,6 +99,11 @@ export default function Profile() {
     }
   };
 
+  //----- Delete given image
+  const handleDelete = imageId => {
+    console.log("delete");
+  };
+
   if(user && images) {
     return (
       <div id="profile">
