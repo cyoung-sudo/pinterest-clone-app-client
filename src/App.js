@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 // Redux
 import { useDispatch } from "react-redux";
-import { setUser } from "./appSlice";
+import { setAuthUser } from "./appSlice";
 // APIs
 import * as authAPI from "./apis/authAPI";
 // Components
@@ -25,7 +25,7 @@ function App() {
     authAPI.getUser()
     .then(res => {
       if(res.data.success) {
-        dispatch(setUser(res.data.user));
+        dispatch(setAuthUser(res.data.user));
       }
 
       setLoaded(true);

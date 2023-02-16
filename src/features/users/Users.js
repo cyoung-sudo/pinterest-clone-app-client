@@ -34,7 +34,7 @@ export default function Users() {
       return Promise.all(promises);
     })
     .then(res => {
-      // Save image-count
+      // Save image-counts
       res.forEach((response, idx) => {
         let count = response.data.images.length;
         if(idx === 0) {

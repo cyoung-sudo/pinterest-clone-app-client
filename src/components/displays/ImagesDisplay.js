@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 // Masonry
 import Masonry from "react-responsive-masonry"
 
-export default function ImagesDisplay({ images, handleDelete }) {
+export default function ImagesDisplay({ images, user, handleDelete }) {
   // State
   const { authUser }  = useSelector((state) => state.app);
 
@@ -18,7 +18,7 @@ export default function ImagesDisplay({ images, handleDelete }) {
               alt="img"
               height={ image.height }
               width={ image.width }/>
-            {authUser && 
+            {authUser && (authUser._id === user._id) &&
               <button onClick={() => handleDelete(image.imageId)}>Delete</button>}
           </div>
         ))}

@@ -3,7 +3,7 @@ import "./Navbar.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
-import { setUser } from "../../appSlice";
+import { setAuthUser } from "../../appSlice";
 import { setPopup } from "../popup/slices/popupSlice";
 
 // APIs
@@ -21,7 +21,7 @@ export default function Navbar() {
     authAPI.logout()
     .then(res => {
       if(res.data.success) {
-        dispatch(setUser(null));
+        dispatch(setAuthUser(null));
         dispatch(setPopup({
           message: "Successfully logged-out",
           type: "success"

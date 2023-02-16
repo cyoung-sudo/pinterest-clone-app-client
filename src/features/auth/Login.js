@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // Redux
 import { useDispatch } from "react-redux";
-import { setUser } from "../../appSlice";
+import { setAuthUser } from "../../appSlice";
 import { setPopup } from "../../components/popup/slices/popupSlice";
 // Components
 import AuthForm from "../../components/forms/AuthForm";
@@ -35,7 +35,7 @@ export default function Login() {
       authAPI.login(username, password)
       .then(res => {
         if(res.data.success) {
-          dispatch(setUser(res.data.user));
+          dispatch(setAuthUser(res.data.user));
           dispatch(setPopup({
             message: "Successfully logged-in",
             type: "success"

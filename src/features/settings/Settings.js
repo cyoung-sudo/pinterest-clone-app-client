@@ -3,7 +3,7 @@ import "./Settings.css";
 import { useNavigate } from "react-router-dom";
 // Redux
 import { useDispatch } from "react-redux";
-import { setUser } from "../../appSlice";
+import { setAuthUser } from "../../appSlice";
 import { setPopup } from "../../components/popup/slices/popupSlice";
 // APIs
 import * as authAPI from "../../apis/authAPI";
@@ -21,64 +21,67 @@ export default function Settings() {
     authAPI.getUser()
     .then(res => {
       if(res.data.success) {
-        //--- Active session
-        let authUser = res.data.user;
+        let result = window.confirm("Are you sure you want to delete this account?");
+        if(result) {
+          let authUser = res.data.user;
 
-        // Delete images for given user
-        imageAPI.deleteForUser(authUser._id)
-        .then(res2 => {
-          if(res2.data.success) {
-            // Delete given user
-            return userAPI.deleteUser(authUser._id);
-          } else {
-            return { message: res2.data.message };
-          }
-        })
-        .then(res2 => {
-          if(res2.message) {
-            return { message: res2.message };
-          } else if(res2.data.success) {
-            // Logout user
-            return authAPI.logout();
-          } else {
-            return { message: res2.data.message };
-          }
-        })
-        .then(res2 => {
-          if(res2.message) {
-            dispatch(setPopup({
-              message: res2.message,
-              type: "error"
-            }));
-          } else if(res2.data.success) {
-            dispatch(setUser(null));
-            dispatch(setPopup({
-              message: "Account deleted",
-              type: "success"
-            }));
+          // Delete images for given user
+          imageAPI.deleteForUser(authUser._id)
+          .then(res2 => {
+            if(res2.data.success) {
+              // Delete given user
+              return userAPI.deleteUser(authUser._id);
+            } else {
+              return { message: res2.data.message };
+            }
+          })
+          .then(res2 => {
+            if(res2.message) {
+              return { message: res2.message };
+            } else if(res2.data.success) {
+              // Logout user
+              return authAPI.logout();
+            } else {
+              return { message: res2.data.message };
+            }
+          })
+          .then(res2 => {
+            if(res2.message) {
+              dispatch(setPopup({
+                message: res2.message,
+                type: "error"
+              }));
+            } else if(res2.data.success) {
+              dispatch(setAuthUser(null));
+              dispatch(setPopup({
+                message: "Account deleted",
+                type: "success"
+              }));
 
-            // Redirect to home page
-            navigate("/");
-          }
-        })
-        .catch(err => console.log(err));
+              // Redirect to home page
+              navigate("/");
+            }
+          })
+          .catch(err => console.log(err));
+        }
       } else {
-        //--- Session expired
-        authAPI.logout()
-        .then(res2 => {
-          dispatch(setUser(null));
-          dispatch(setPopup({
-            message: "Session has expired",
-            type: "error"
-          }));
-
-          // Redirect to home page
-          navigate("/");
-        })
-        .catch(err => console.log(err));
+        // Expired session
+        expiredSession();
       }
     })
     .catch(err => console.log(err));
+  };
+
+  //----- Handle expired sessions
+  const expiredSession = () => {
+    dispatch(setAuthUser(null));
+    dispatch(setPopup({
+      message: "Session has expired",
+      type: "error"
+    }));
+
+    // Redirect to home page
+    navigate("/");
   };
 
   return (

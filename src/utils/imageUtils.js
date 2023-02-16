@@ -12,8 +12,6 @@ export const formatImage = image => {
   })
   .catch(err => {
     // Invalid image
-    console.log(err);
-
     return {
       imageId: image._id,
       url: image.url,

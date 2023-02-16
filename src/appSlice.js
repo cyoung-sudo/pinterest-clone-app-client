@@ -8,7 +8,7 @@ export const appSlice = createSlice({
   },
   reducers: {
     //----- Set authenticated user
-    setUser: (state, action) => {
+    setAuthUser: (state, action) => {
       state.authUser = action.payload;
     },
     //----- Manual refresh
@@ -19,6 +19,6 @@ export const appSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setUser, refresh } = appSlice.actions;
+export const { setAuthUser, refresh } = appSlice.actions;
 
 export default appSlice.reducer;
