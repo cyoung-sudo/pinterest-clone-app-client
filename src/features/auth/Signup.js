@@ -26,7 +26,7 @@ export default function Signup() {
     // Validations
     if(username === "" || password === "") {
       dispatch(setPopup({
-        message: "Missing input field",
+        message: "Missing required information",
         type: "error"
       }));
     } else {

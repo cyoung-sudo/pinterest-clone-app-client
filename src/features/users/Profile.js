@@ -68,7 +68,7 @@ export default function Profile() {
     // Validations
     if(url === "") {
       dispatch(setPopup({
-        message: "Missing url",
+        message: "Missing required information",
         type: "error"
       }));
     } else {
@@ -81,7 +81,7 @@ export default function Profile() {
           .then(res2 => {
             if(res2.data.success) {
               dispatch(setPopup({
-                message: "Image created",
+                message: "Added image",
                 type: "success"
               }));
               dispatch(refresh());
@@ -113,7 +113,7 @@ export default function Profile() {
         .then(res2 => {
           if(res2.data.success) {
             dispatch(setPopup({
-              message: "Image removed",
+              message: "Removed image",
               type: "success"
             }));
             dispatch(refresh());

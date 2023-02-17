@@ -54,7 +54,7 @@ export default function Settings() {
             } else if(res2.data.success) {
               dispatch(setAuthUser(null));
               dispatch(setPopup({
-                message: "Account deleted",
+                message: "Successfully deleted account",
                 type: "success"
               }));
 
