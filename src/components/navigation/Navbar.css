@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   height: var(--navbar-height);
+  background-color: var(--lighter-color);
 }
 
 #navbar-logo {
@@ -47,8 +48,12 @@
   text-decoration: none;
 }
 
+
+#navbar-logo a:hover,
+#navbar-links li a:hover,
 #navbar-links li button:hover {
   cursor: pointer;
+  opacity: 50%;
 }
 
 .navbar-link-active {

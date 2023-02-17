@@ -1,0 +1,26 @@
+#imageForm {
+  display: flex;
+  justify-content: center;
+}
+
+.imageForm-field > input {
+  width: 50vw;
+  padding: 0.3rem 0.5rem;
+  font-size: var(--default-font);
+}
+
+.imageForm-submit > input {
+  padding: 0.3rem 0.5rem;
+  background-color: var(--theme-color2);
+  color: white;
+  border-color: var(--theme-color2);
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  font-size: var(--default-font);
+  font-weight: bold;
+}
+
+.imageForm-submit > input:hover {
+  cursor: pointer;
+  opacity: 50%;
+}

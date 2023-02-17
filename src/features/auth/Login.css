@@ -1,0 +1,71 @@
+#login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  padding: 2em 0 3rem 0;
+}
+
+#login-header {
+  margin-bottom: 1rem;
+}
+
+#login-form-wrapper {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+#login-divider {
+  display: flex;
+  margin-bottom: 2rem;
+  width: 100%;
+  font-weight: 300;
+}
+
+#login-divider > hr {
+  margin: auto;
+  width: 45%;
+  border: 0.05rem solid gray;
+}
+
+#login-alts > button {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.5rem;
+  background-color: var(--theme-color2);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: var(--default-font);
+  font-weight: bold;
+}
+
+#login-alts > button:hover {
+  cursor: pointer;
+  opacity: 50%;
+}
+
+#login-alts > button > span {
+  position: relative;
+  top: 1px;
+  right: 3px;
+  padding-left: 0.2rem;
+}
+
+/* ----- Breakpoints ----- */
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {
+  #login-form-wrapper,
+  #login-divider {
+    width: 70%;
+  }
+}
+ 
+/* Extra big screen devices (1200px and above) */
+@media only screen and (min-width: 1200px) {
+  #login-form-wrapper,
+  #login-divider {
+    width: 50%;
+  }
+}
+/* ----- /Breakpoints ----- */

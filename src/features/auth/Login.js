@@ -11,6 +11,8 @@ import { setPopup } from "../../components/popup/slices/popupSlice";
 import AuthForm from "../../components/forms/AuthForm";
 // APIs
 import * as authAPI from "../../apis/authAPI";
+// Icons
+import { BsGithub } from "react-icons/bs";
 
 export default function Login() {
   // Controlled input
@@ -72,7 +74,17 @@ export default function Login() {
           handleSubmit={ handleSubmit }/>
       </div>
 
-      <button onClick={handleGithubAuth}>Login using Github</button>
+      <div id="login-divider">
+        <hr/>
+        or
+        <hr/>
+      </div>
+
+      <div id="login-alts">
+        <button onClick={handleGithubAuth}>
+          <span><BsGithub size={ 20 }/></span>Github
+        </button>
+      </div>
     </div>
   );
 };

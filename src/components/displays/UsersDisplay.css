@@ -1,0 +1,56 @@
+#usersDisplay {
+  width: 100%;
+}
+
+#usersDisplay-list {
+  list-style: none;
+}
+
+#usersDisplay-list > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--lighter-color);
+  border-radius: 0.5rem;
+}
+
+#usersDisplay-list > li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+#usersDisplay-list > li > div {
+  margin-bottom: 0.8rem;
+}
+
+.usersDisplay-username {
+  font-size: 1.3rem;
+}
+
+.usersDisplay-badges > span {
+  padding: 0.2rem 0.3rem;
+  background-color: var(--badge-color);
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.usersDisplay-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.usersDisplay-links > a {
+  padding: 0.3rem 0.5rem;
+  background-color: var(--theme-color2);
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.usersDisplay-links > a:hover {
+  opacity: 50%;
+}

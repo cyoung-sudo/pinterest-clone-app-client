@@ -8,10 +8,12 @@ export default function UsersDisplay({ users, imageCount }) {
       <ul id="usersDisplay-list">
         {users.map((user, idx) => (
           <li key={ idx }>
-            <div>{ user.username }</div>
-            <div>Images: { imageCount[idx] }</div>
-            <div>Joined: { new Date(user.createdAt).toDateString() }</div>
-            <div>
+            <div className="usersDisplay-username">{ user.username }</div>
+            <div className="usersDisplay-badges">
+              <span>Images: { imageCount[idx] }</span>
+            </div>
+            <div className="usersDisplay-date">Joined: { new Date(user.createdAt).toDateString() }</div>
+            <div className="usersDisplay-links">
               <Link to={`/users/${user._id}`}>View Profile</Link>
             </div>
           </li>

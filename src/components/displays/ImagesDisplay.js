@@ -10,7 +10,7 @@ export default function ImagesDisplay({ images, user, handleDelete }) {
 
   return (
     <div id="imagesDisplay">
-      <Masonry>
+      <Masonry columnsCount={2}>
         {images.map((image, idx) => (
           <div key={ idx } className="imagesDisplay-image">
             <img

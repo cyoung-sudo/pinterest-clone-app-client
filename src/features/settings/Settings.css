@@ -1,0 +1,59 @@
+#settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - var(--navbar-height));
+  padding: 2em 0 3rem 0;
+}
+
+#settings-header {
+  margin-bottom: 1rem;
+}
+
+#settings-actions {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--lighter-color);
+  border-radius: 0.5rem;
+}
+
+.settings-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-action > div {
+  font-size: 1.1rem;
+}
+
+.settings-action > button {
+  padding: 0.3rem 0.5rem;
+  background-color: var(--theme-color2);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: var(--default-font);
+  font-weight: bold;
+}
+
+.settings-action > button:hover {
+  cursor: pointer;
+  opacity: 50%;
+}
+
+/* ----- Breakpoints ----- */
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {
+  #settings-actions {
+    width: 70%;
+  }
+}
+ 
+/* Extra big screen devices (1200px and above) */
+@media only screen and (min-width: 1200px) {
+  #settings-actions {
+    width: 50%;
+  }
+}
+/* ----- /Breakpoints ----- */

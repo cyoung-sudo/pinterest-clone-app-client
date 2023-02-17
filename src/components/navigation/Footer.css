@@ -1,5 +1,6 @@
 #footer {
   padding: 1rem;
+  background-color: var(--lighter-color);
 }
 
 #footer-links {

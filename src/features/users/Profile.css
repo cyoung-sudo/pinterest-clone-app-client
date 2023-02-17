@@ -1,3 +1,37 @@
-#profile-imagesDisplay-wrapper {
-  width: 100vw;
+#profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em 0 3rem 0;
 }
+
+#profile-header {
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+#profile-form-wrapper {
+  width: 90%;
+  margin-bottom: 2rem;
+}
+
+#profile-imagesDisplay-wrapper {
+  width: 100%;
+}
+
+/* ----- Breakpoints ----- */
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {
+  #profile-imagesDisplay-wrapper {
+    width: 90%;
+  }
+}
+ 
+/* Extra big screen devices (1200px and above) */
+@media only screen and (min-width: 1200px) {
+  #profile-imagesDisplay-wrapper {
+    width: 70%;
+  }
+}
+/* ----- /Breakpoints ----- */
