@@ -1,0 +1,39 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination > button {
+  padding: 0.3rem 0.5rem;
+  background-color: var(--theme-color2);
+  color: white;
+  border-color: var(--theme-color2);
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* First child */
+.pagination > button:first-child {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-right: none;
+}
+
+/* Last child */
+.pagination > button:last-child {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-left: none;
+}
+
+.pagination > button:hover {
+  cursor: pointer;
+  opacity: 50%;
+}
+
+.pagination > div {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid gray;
+  font-size: 0.9rem;
+  font-weight: 300;
+}

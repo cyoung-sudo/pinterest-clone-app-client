@@ -2,6 +2,10 @@
   width: 100%;
 }
 
+#usersDisplay-pagination-wrapper {
+  margin-bottom: 2rem;
+}
+
 #usersDisplay-list {
   list-style: none;
 }
