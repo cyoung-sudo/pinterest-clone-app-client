@@ -11,6 +11,7 @@ import { setPopup } from "../../components/popup/slices/popupSlice";
 import ImageForm from "../../components/forms/ImageForm";
 import ImagesDislay from "../../components/displays/ImagesDisplay";
 import Loading from "../../components/static/Loading";
+import EmptyImages from "../../components/static/EmptyImages";
 // APIs
 import * as authAPI from "../../apis/authAPI";
 import * as userAPI from "../../apis/userAPI";
@@ -157,10 +158,16 @@ export default function Profile() {
         }
 
         <div id="profile-imagesDisplay-wrapper">
-          <ImagesDislay
-            images={ images }
-            user={ user }
-            handleDelete={ handleDelete }/>
+          {(images.length > 0) &&
+            <ImagesDislay
+              images={ images }
+              user={ user }
+              handleDelete={ handleDelete }/>
+          }
+
+          {(images.length <= 0) &&
+            <EmptyImages/>
+          }
         </div>
       </div>
     );
