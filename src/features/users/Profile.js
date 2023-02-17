@@ -10,6 +10,7 @@ import { setPopup } from "../../components/popup/slices/popupSlice";
 // Components
 import ImageForm from "../../components/forms/ImageForm";
 import ImagesDislay from "../../components/displays/ImagesDisplay";
+import Loading from "../../components/static/Loading";
 // APIs
 import * as authAPI from "../../apis/authAPI";
 import * as userAPI from "../../apis/userAPI";
@@ -163,5 +164,7 @@ export default function Profile() {
         </div>
       </div>
     );
+  } else {
+    return <Loading/>;
   }
 };

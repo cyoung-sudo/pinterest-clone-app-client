@@ -3,6 +3,7 @@ import "./Users.css";
 import { useState, useEffect } from "react";
 // Components
 import UsersDisplay from "../../components/displays/UsersDisplay";
+import Loading from "../../components/static/Loading";
 // APIs
 import * as userAPI from "../../apis/userAPI";
 import * as imageAPI from "../../apis/imageAPI";
@@ -61,5 +62,7 @@ export default function Users() {
         </div>
       </div>
     );
+  } else {
+    return <Loading/>;
   }
 };

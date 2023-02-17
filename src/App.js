@@ -12,7 +12,6 @@ import * as authAPI from "./apis/authAPI";
 import Navbar from "./components/navigation/Navbar";
 import Footer from "./components/navigation/Footer";
 import Popup from "./components/popup/Popup";
-import Loading from "./components/static/Loading";
 
 function App() {
   // Loading status
@@ -44,8 +43,6 @@ function App() {
         <Footer/>
       </div>
     );
-  } else {
-    return <Loading/>;
   }
 }
 
