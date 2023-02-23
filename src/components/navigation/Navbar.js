@@ -2,16 +2,14 @@ import "./Navbar.css";
 // Routing
 import { Link, NavLink, useNavigate } from "react-router-dom";
 // Redux
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setAuthUser } from "../../appSlice";
 import { setPopup } from "../popup/slices/popupSlice";
 
 // APIs
 import * as authAPI from "../../apis/authAPI";
 
-export default function Navbar() {
-  // State
-  const authUser = useSelector((state) => state.app.authUser);
+export default function Navbar({ authUser }) {
   // Hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();

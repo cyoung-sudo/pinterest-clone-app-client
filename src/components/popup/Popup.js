@@ -2,13 +2,10 @@ import "./Popup.css";
 // React
 import { useEffect, useRef } from "react";
 // Redux
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { resetPopup } from "./slices/popupSlice";
 
-export default function Popup() {
-  // State
-  const message = useSelector((state) => state.popup.message);
-  const type = useSelector((state) => state.popup.type);
+export default function Popup({ message, type, delay }) {
   // Hooks
   const dispatch = useDispatch();
   const timerId = useRef(null);
@@ -23,7 +20,7 @@ export default function Popup() {
     // 3sec duration
     timerId.current = setTimeout(() => {
       dispatch(resetPopup());
-    }, 3000);
+    }, delay);
     // Clear timer on unmount
     return () => {
       clearTimeout(timerId.current);

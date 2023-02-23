@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 // Routing
 import { Outlet } from "react-router-dom";
 // Redux
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setAuthUser } from "./appSlice";
 // APIs
 import * as authAPI from "./apis/authAPI";
@@ -16,6 +16,9 @@ import Popup from "./components/popup/Popup";
 function App() {
   // Loading status
   const [loaded, setLoaded] = useState(false);
+  // State
+  const { authUser }  = useSelector((state) => state.app);
+  const { message, type } = useSelector((state) => state.popup);
   // Hooks
   const dispatch = useDispatch();
 
@@ -35,9 +38,12 @@ function App() {
   if(loaded) {
     return (
       <div id="app">
-        <Navbar/>
+        <Navbar authUser={ authUser }/>
         <div id="app-content">
-          <Popup/>
+          <Popup
+            message={ message }
+            type={ type }
+            delay={ 3000 }/>
           <Outlet/>
         </div>
         <Footer/>

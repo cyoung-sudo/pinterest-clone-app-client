@@ -162,6 +162,7 @@ export default function Profile() {
             <ImagesDislay
               images={ images }
               user={ user }
+              authUser={(authUser ? authUser : null)}
               handleDelete={ handleDelete }/>
           }
 

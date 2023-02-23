@@ -1,13 +1,8 @@
 import "./ImagesDisplay.css";
-// Redux
-import { useSelector } from "react-redux";
 // Masonry
 import Masonry from "react-responsive-masonry"
 
-export default function ImagesDisplay({ images, user, handleDelete }) {
-  // State
-  const { authUser }  = useSelector((state) => state.app);
-
+export default function ImagesDisplay({ images, user, authUser, handleDelete }) {
   return (
     <div id="imagesDisplay">
       <Masonry columnsCount={2}>
@@ -15,7 +10,7 @@ export default function ImagesDisplay({ images, user, handleDelete }) {
           <div key={ idx } className="imagesDisplay-image">
             <img
               src={ image.url }
-              alt="img"
+              alt={ `img${idx}` }
               height={ image.height }
               width={ image.width }/>
             {authUser && (authUser._id === user._id) &&

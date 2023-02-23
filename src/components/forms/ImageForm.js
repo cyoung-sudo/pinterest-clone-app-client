@@ -5,6 +5,7 @@ export default function ImageForm({ setUrl, handleSubmit }) {
     <form id="imageForm" onSubmit={ handleSubmit }>
       <div className="imageForm-field">
         <input
+          data-testid="imageForm-url"
           onChange={e => setUrl(e.target.value)}
           type="text" 
           placeholder="image url"/>
