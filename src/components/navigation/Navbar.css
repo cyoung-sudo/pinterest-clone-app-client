@@ -19,8 +19,32 @@
   text-decoration: none;
 }
 
-#navbar-links {
+#navbar-logo a:hover {
+  cursor: pointer;
+  opacity: 50%;
+}
+
+/* ------ Collapse toggle ----- */
+#navbar-collapse-toggle {
   display: flex;
+  align-items: center;
+  padding-right: 1rem;
+}
+
+#navbar-collapse-toggle button {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem;
+  background-color: var(--theme-color);
+  color: white;
+  border: none;
+  border-radius: 0.3rem;
+}
+/* ------ /Collapse toggle ----- */
+
+/* ------ Expanded links ----- */
+#navbar-links {
+  display: none;
   align-items: center;
   padding-right: 1rem;
   list-style: none;
@@ -49,13 +73,66 @@
 }
 
 
-#navbar-logo a:hover,
 #navbar-links li a:hover,
 #navbar-links li button:hover {
   cursor: pointer;
   opacity: 50%;
 }
+/* ------ /Expanded links ----- */
+
+/* ------ Collapsed links ----- */
+#navbar-collapsed-links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: var(--navbar-height);
+  background-color: var(--light-dark-color);
+}
+
+#navbar-collapsed-links li a {
+  display: inline-block;
+  width: 100%;
+  padding: 1rem;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+}
+
+#navbar-collapsed-links li button {
+  width: 100%;
+  padding: 1rem;
+  background: none;
+  color: white;
+  font-size: var(--default-font);
+  font-weight: bold;
+  border: none;
+  text-decoration: none;
+}
+/* ------ /Collapsed links ----- */
 
 .navbar-link-active {
   opacity: 50%;
 }
+
+.navbar-link-active2 {
+  background-color: var(--lighter-color);
+}
+
+/* ----- Breakpoints ----- */
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {
+  #navbar-collapse-toggle {
+    display: none;
+  }
+
+  #navbar-links {
+    display: flex;
+  }
+
+  #navbar-collapsed-links {
+    display: none;
+  }
+}
+/* ----- /Breakpoints ----- */
