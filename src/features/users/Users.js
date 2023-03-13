@@ -19,10 +19,13 @@ export default function Users() {
     userAPI.getAll()
     .then(res => {
       if(res.data.success) {
-        setUsers(res.data.users);
+        // Set from newest -> oldest
+        let reversedUsers = res.data.users.reverse();
+        setUsers(reversedUsers);
+        return { users: reversedUsers };
+      } else {
+        return { users: [] };
       }
-
-      return { users: res.data.users };
     })
     .then(res => {
       let promises = [];
