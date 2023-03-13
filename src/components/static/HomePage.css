@@ -3,4 +3,15 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - var(--navbar-height));
+  background-color: var(--theme-color);
+  color: white;
+  text-align: center;
+}
+
+#homePage-header h1 {
+  margin-bottom: 0.3rem;
+}
+
+#homePage-header p {
+  font-style: italic;
 }
