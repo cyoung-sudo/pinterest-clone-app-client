@@ -2,9 +2,9 @@
 
 :root {
   /* Colors */
-  --theme-color: orangered;
+  --theme-color: crimson;
   --theme-color2: black;
-  --badge-color: teal;
+  --badge-color: darkorange;
   --lighter-color: hsla(0, 0%, 90%, 0.5);
   --light-color: hsla(0, 0%, 90%, 0.8);
   --light-dark-color: hsla(0, 0%, 20%, 0.8);

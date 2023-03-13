@@ -5,10 +5,7 @@ export default function Footer() {
     <div id="footer">
       <ul id="footer-links">
         <li>
-          <a href="">Test link</a>
-        </li>
-        <li>
-          <a href="">Test link2</a>
+          <a href="https://www.flaticon.com/free-icons/pinterest" title="pinterest icons" target="_blank" rel="noreferrer">Pinterest icons created by Freepik - Flaticon</a>
         </li>
       </ul>
     </div>

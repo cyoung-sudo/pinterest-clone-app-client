@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   height: var(--navbar-height);
-  background-color: var(--lighter-color);
 }
 
 #navbar-logo {
